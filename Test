@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procenträknare Spel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 16px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        @media (min-width: 640px) {
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        #game-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .problem-box {
+            background-color: #e0e0e0;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .problem-box {
+                padding: 2rem;
+                margin-bottom: 2rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="number"] {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            input[type="number"] {
+                padding: 1rem;
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.8rem;
+            border: none;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        @media (min-width: 640px) {
+            button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        button:hover {
+            background-color: #2563eb;
+        }
+
+        .result-box {
+            background-color: #f0fdf4;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #34d399;
+            color: #065f46;
+            font-size: 1rem;
+            display: none;
+        }
+        @media (min-width: 640px) {
+            .result-box{
+                 padding: 1.5rem;
+                 font-size: 1.2rem;
+            }
+        }
+
+        .play-again-button {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.8rem;
+            border: none;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        @media (min-width: 640px) {
+            .play-again-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        .play-again-button:hover {
+            background-color: #2563eb;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: bold;
+            min-height: 24px;
+            font-size: 0.9rem;
+        }
+         @media (min-width: 640px) {
+             .feedback{
+                font-size: 1rem;
+             }
+         }
+        .correct {
+            color: #16a34a;
+        }
+
+        .incorrect {
+            color: #dc2626;
+        }
+        .instructions-box {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: rgba(0, 0, 0, 0.9);
+          border: 4px solid #3b82f6;
+          border-radius: 8px;
+          padding: 1rem;
+          color: #fff;
+          z-index: 11;
+          text-align: center;
+          max-width: 80%;
+        }
+
+        .instructions-box h2 {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+          color: #ffdb58;
+        }
+        .instructions-box p{
+            font-size: 0.6rem;
+            margin-bottom: 0.5rem;
+
+        }
+
+        .instructions-box ul {
+          list-style: none;
+          padding: 0;
+          margin-bottom: 1rem;
+            font-size: 0.6rem;
+
+        }
+
+        .instructions-box li {
+          margin-bottom: 0.25rem;
+            font-size: 0.6rem;
+
+        }
+
+        .instructions-box button {
+          padding: 0.5rem 1rem;
+          background-color: #3b82f6;
+          color: #fff;
+          font-family: 'Press Start 2P', cursive;
+          border-radius: 0.375rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          font-size: 0.75rem;
+          border: none;
+        }
+
+        .instructions-box button:hover {
+          background-color: #2563eb;
+        }
+        @media (min-width: 640px) {
+        .instructions-box h2 {
+            font-size: 1.5rem;
+        }
+        .instructions-box ul {
+            font-size: 0.8rem;
+
+        }
+        .instructions-box p{
+                font-size: 0.8rem;
+        }
+
+        .instructions-box li {
+          margin-bottom: 0.25rem;
+              font-size: 0.8rem;
+
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Procenträknare</h1>
+        <div class="instructions-box" id="instructions">
+              <h2>Hur man spelar</h2>
+              <ul>
+                <li>Du kommer att få en fråga där du ska räkna ut procent.</li>
+                <li>Ange ditt svar i rutan.</li>
+                <li>Klicka på "Kontrollera svar" för att se om du hade rätt.</li>
+                <li>Klicka på "Spela igen" för att få en ny fråga.</li>
+              </ul>
+                <p>Lycka till!</p>
+
+              <button id="close-instructions">Starta spelet</button>
+            </div>
+        <div id="game-container">
+            <div class="problem-box" id="problem"></div>
+            <div class="input-container">
+                <input type="number" id="answer" placeholder="Ditt svar i %">
+                <button id="check-answer">Kontrollera svar</button>
+            </div>
+            <div class="result-box" id="result"></div>
+            <button class="play-again-button" id="play-again" style="display: none;">Spela igen</button>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        let problemDiv = document.getElementById('problem');
+        let answerInput = document.getElementById('answer');
+        let checkAnswerButton = document.getElementById('check-answer');
+        let resultDiv = document.getElementById('result');
+        let playAgainButton = document.getElementById('play-again');
+        let feedbackDiv = document.getElementById('feedback');
+        let instructionsBox = document.getElementById('instructions');
+        let closeInstructionsButton = document.getElementById('close-instructions');
+
+        let num1, num2, percentage, correctAnswer;
+        let currentProblemType; // 1: Vad är X% av Y, 2: X är hur många % av Y, 3: X är Y% av vad
+
+        function generateProblem() {
+            let problemType = Math.floor(Math.random() * 3) + 1; // 1, 2 eller 3
+            currentProblemType = problemType;
+            num1 = Math.floor(Math.random() * 100) + 1; // Upp till 100
+            num2 = Math.floor(Math.random() * 100) + 1; // Upp till 100
+
+            switch (problemType) {
+                case 1: // Vad är X% av Y
+                    percentage = num1;
+                    let amount = num2;
+                    correctAnswer = (percentage / 100) * amount;
+                    problemDiv.textContent = `Vad är ${percentage}% av ${amount}?`;
+                    break;
+                case 2: // X är hur många % av Y
+                    let part = num1;
+                    let total = num2;
+                    correctAnswer = (part / total) * 100;
+                    problemDiv.textContent = `${part} är hur många % av ${total}?`;
+                    break;
+                case 3: // X är Y% av vad
+                    let part2 = num1;
+                    percentage2 = num2;
+                    correctAnswer = (part2 / percentage2) * 100;
+                    problemDiv.textContent = `${part2} är ${percentage2}% av vad?`;
+                    break;
+            }
+
+            answerInput.value = ''; // Rensa input
+            resultDiv.style.display = 'none'; // Dölj resultatet
+            playAgainButton.style.display = 'none'; // Dölj "Spela igen" knappen
+            feedbackDiv.textContent = ''; // Rensa feedback
+        }
+
+        function checkAnswer() {
+            let userAnswer = parseFloat(answerInput.value);
+            if (isNaN(userAnswer)) {
+                feedbackDiv.textContent = 'Ange ett giltigt nummer.';
+                feedbackDiv.className = 'incorrect';
+                return;
+            }
+
+            let roundedCorrectAnswer = Math.round(correctAnswer * 100) / 100; // Avrunda till 2 decimaler
+            let roundedUserAnswer = Math.round(userAnswer * 100) / 100;
+
+            if (roundedUserAnswer === roundedCorrectAnswer) {
+                resultDiv.textContent = `Rätt! Svaret är ${roundedCorrectAnswer}%.`;
+                resultDiv.style.display = 'block';
+                feedbackDiv.textContent = 'Korrekt!';
+                feedbackDiv.className = 'correct';
+            } else {
+                resultDiv.textContent = `Fel! Rätt svar är ${roundedCorrectAnswer}%.`;
+                resultDiv.style.display = 'block';
+                feedbackDiv.textContent = 'Felaktigt!';
+                feedbackDiv.className = 'incorrect';
+            }
+
+            playAgainButton.style.display = 'block'; // Visa "Spela igen" knappen
+        }
+
+        checkAnswerButton.addEventListener('click', checkAnswer);
+        playAgainButton.addEventListener('click', generateProblem);
+        closeInstructionsButton.addEventListener('click', () => {
+          instructionsBox.style.display = 'none';
+          generateProblem();
+        });
+
+        // Start the game when the page loads
+        // generateProblem();
+    </script>
+</body>
+</html>
