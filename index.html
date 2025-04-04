@@ -14,12 +14,12 @@
         }
     </style>
 </head>
-<body class="bg-green-100 min-h-screen flex justify-center items-center p-4">
-    <div class="bg-white rounded-lg p-8 w-full max-w-md">
+<body class="bg-gradient-to-r from-blue-200 to-green-200 min-h-screen flex flex-col justify-center items-center p-4">
+    <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md transition-transform hover:scale-105">
         <h1 class="text-2xl font-semibold text-blue-600 text-center mb-6">Procentspelet</h1>
         <div class="mb-4">
             <label for="difficulty" class="block text-gray-700 text-sm font-bold mb-2">Välj svårighetsgrad:</label>
-            <select id="difficulty" class="border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <select id="difficulty" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <option value="basic">Lätt</option>
                 <option value="intermediate">Mellan</option>
                 <option value="advanced">Svår</option>
@@ -27,7 +27,7 @@
         </div>
         <div id="question" class="text-lg text-gray-800 text-center mb-4 min-h-[3rem]"></div>
         <div class="mb-4">
-            <input type="number" id="answer" placeholder="Ditt svar" class="border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <input type="number" id="answer" placeholder="Ditt svar" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
         <div id="feedback" class="text-center text-green-600 font-semibold mb-4 min-h-[1.5rem]"></div>
     </div>
