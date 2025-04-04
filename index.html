@@ -3,377 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procenträknare Spel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Procentspelet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f0f0f0;
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            padding: 16px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #333;
-            text-align: center;
-        }
-
-        @media (min-width: 640px) {
-            h1 {
-                font-size: 3rem;
-                margin-bottom: 2rem;
-            }
-        }
-
-        #game-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .problem-box {
-            background-color: #e0e0e0;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .problem-box {
-                padding: 2rem;
-                margin-bottom: 2rem;
-                font-size: 1.2rem;
-            }
-        }
-
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 1rem;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        input[type="number"] {
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-            width: 100%;
-            max-width: 300px;
-            text-align: center;
-            font-size: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            input[type="number"] {
-                padding: 1rem;
-                margin-bottom: 1rem;
-                font-size: 1.2rem;
-            }
-        }
-
-        button {
-            padding: 0.75rem 1.5rem;
-            background-color: #3b82f6;
-            color: #fff;
-            font-family: 'Press Start 2P', cursive;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 0.8rem;
-            border: none;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        @media (min-width: 640px) {
-            button {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-        }
-
-        button:hover {
-            background-color: #2563eb;
-        }
-
-        .result-box {
-            background-color: #f0fdf4;
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #34d399;
-            color: #065f46;
-            font-size: 1rem;
-            display: none;
-        }
-        @media (min-width: 640px) {
-            .result-box{
-                 padding: 1.5rem;
-                 font-size: 1.2rem;
-            }
-        }
-
-        .play-again-button {
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #3b82f6;
-            color: #fff;
-            font-family: 'Press Start 2P', cursive;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 0.8rem;
-            border: none;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        @media (min-width: 640px) {
-            .play-again-button {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-        }
-
-        .play-again-button:hover {
-            background-color: #2563eb;
-        }
-
-        .feedback {
-            margin-top: 1rem;
-            text-align: center;
-            font-weight: bold;
-            min-height: 24px;
-            font-size: 0.9rem;
-        }
-         @media (min-width: 640px) {
-             .feedback{
-                font-size: 1rem;
-             }
-         }
-        .correct {
-            color: #16a34a;
-        }
-
-        .incorrect {
-            color: #dc2626;
-        }
-        .instructions-box {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: rgba(0, 0, 0, 0.9);
-          border: 4px solid #3b82f6;
-          border-radius: 8px;
-          padding: 1rem;
-          color: #fff;
-          z-index: 11;
-          text-align: center;
-          max-width: 80%;
-        }
-
-        .instructions-box h2 {
-          font-size: 1.2rem;
-          margin-bottom: 0.5rem;
-          color: #ffdb58;
-        }
-        .instructions-box p{
-            font-size: 0.6rem;
-            margin-bottom: 0.5rem;
-
-        }
-
-        .instructions-box ul {
-          list-style: none;
-          padding: 0;
-          margin-bottom: 1rem;
-            font-size: 0.6rem;
-
-        }
-
-        .instructions-box li {
-          margin-bottom: 0.25rem;
-            font-size: 0.6rem;
-
-        }
-
-        .instructions-box button {
-          padding: 0.5rem 1rem;
-          background-color: #3b82f6;
-          color: #fff;
-          font-family: 'Press Start 2P', cursive;
-          border-radius: 0.375rem;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-          font-size: 0.75rem;
-          border: none;
-        }
-
-        .instructions-box button:hover {
-          background-color: #2563eb;
-        }
-        @media (min-width: 640px) {
-        .instructions-box h2 {
-            font-size: 1.5rem;
-        }
-        .instructions-box ul {
-            font-size: 0.8rem;
-
-        }
-        .instructions-box p{
-                font-size: 0.8rem;
-        }
-
-        .instructions-box li {
-          margin-bottom: 0.25rem;
-              font-size: 0.8rem;
-
-        }
+            font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Procenträknare</h1>
-        <div class="instructions-box" id="instructions">
-              <h2>Hur man spelar</h2>
-              <ul>
-                <li>Du kommer att få en fråga där du ska räkna ut procent.</li>
-                <li>Ange ditt svar i rutan.</li>
-                <li>Klicka på "Kontrollera svar" för att se om du hade rätt.</li>
-                <li>Klicka på "Spela igen" för att få en ny fråga.</li>
-              </ul>
-                <p>Lycka till!</p>
-
-              <button id="close-instructions">Starta spelet</button>
-            </div>
-        <div id="game-container">
-            <div class="problem-box" id="problem"></div>
-            <div class="input-container">
-                <input type="number" id="answer" placeholder="Ditt svar i %">
-                <button id="check-answer">Kontrollera svar</button>
-            </div>
-            <div class="result-box" id="result"></div>
-            <button class="play-again-button" id="play-again" style="display: none;">Spela igen</button>
-            <div class="feedback" id="feedback"></div>
+<body class="bg-gradient-to-r from-blue-200 to-green-200 min-h-screen flex flex-col justify-center items-center p-4">
+    <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md transition-transform hover:scale-105">
+        <h1 class="text-2xl font-semibold text-blue-600 text-center mb-6">Procentspelet</h1>
+        <div class="mb-4">
+            <label for="difficulty" class="block text-gray-700 text-sm font-bold mb-2">Välj svårighetsgrad:</label>
+            <select id="difficulty" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="basic">Lätt</option>
+                <option value="intermediate">Mellan</option>
+                <option value="advanced">Svår</option>
+            </select>
         </div>
+        <div id="question" class="text-lg text-gray-800 text-center mb-4 min-h-[3rem]"></div>
+        <div class="mb-4">
+            <input type="number" id="answer" placeholder="Ditt svar" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div id="feedback" class="text-center text-green-600 font-semibold mb-4 min-h-[1.5rem]"></div>
     </div>
 
     <script>
-        let problemDiv = document.getElementById('problem');
-        let answerInput = document.getElementById('answer');
-        let checkAnswerButton = document.getElementById('check-answer');
-        let resultDiv = document.getElementById('result');
-        let playAgainButton = document.getElementById('play-again');
-        let feedbackDiv = document.getElementById('feedback');
-        let instructionsBox = document.getElementById('instructions');
-        let closeInstructionsButton = document.getElementById('close-instructions');
+        let currentQuestion;
+        let correctAnswers = 0;
+        let currentDifficulty = 'basic';
+        let attempts = 0;
 
-        let num1, num2, percentage, correctAnswer;
-        let currentProblemType; // 1: Vad är X% av Y, 2: X är hur många % av Y, 3: X är Y% av vad
+        const difficultySelect = document.getElementById('difficulty');
+        difficultySelect.addEventListener('change', () => {
+            currentDifficulty = difficultySelect.value;
+            nextQuestion();
+        });
 
-        function generateProblem() {
-            let problemType = Math.floor(Math.random() * 3) + 1; // 1, 2 eller 3
-            currentProblemType = problemType;
-            num1 = Math.floor(Math.random() * 100) + 1; // Upp till 100
-            num2 = Math.floor(Math.random() * 100) + 1; // Upp till 100
+        function generateQuestion() {
+            let num1, num2, percentage;
+            let questionText = "";
 
-            switch (problemType) {
-                case 1: // Vad är X% av Y
-                    percentage = num1;
-                    let amount = num2;
-                    correctAnswer = (percentage / 100) * amount;
-                    problemDiv.textContent = `Vad är ${percentage}% av ${amount}?`;
+            switch (currentDifficulty) {
+                case 'basic':
+                    // Hitta procenten av ett tal (t.ex., Vad är 20% av 50?)
+                    num1 = Math.floor(Math.random() * 10) * 10; // Jämnt delbart med 10, max 100
+                    percentage = Math.floor(Math.random() * 10) * 10 + 10; // Jämnt delbart med 10, mellan 10 och 100
+                    questionText = `Vad är ${percentage}% av ${num1}?`;
+                    correctAnswer = (percentage / 100) * num1;
                     break;
-                case 2: // X är hur många % av Y
-                    let part = num1;
-                    let total = num2;
-                    correctAnswer = (part / total) * 100;
-                    problemDiv.textContent = `${part} är hur många % av ${total}?`;
+                case 'intermediate':
+                    // Hitta det hela när procenten och delen är kända (t.ex., 5% av vilket tal är 12?)
+                    percentage = Math.floor(Math.random() * 9) + 1; // Procent mellan 1 och 10
+                    num2 = percentage * (Math.floor(Math.random() * 10) + 1); // num2 är en multipel av percentage
+                    questionText = `${percentage}% av vilket tal är ${num2}?`;
+                    correctAnswer = (num2 / percentage) * 100;
                     break;
-                case 3: // X är Y% av vad
-                    let part2 = num1;
-                    percentage2 = num2;
-                    correctAnswer = (part2 / percentage2) * 100;
-                    problemDiv.textContent = `${part2} är ${percentage2}% av vad?`;
+                case 'advanced':
+                    // Mer komplexa problem, t.ex. ökning/minskning i procent
+                    num1 = Math.floor(Math.random() * 10) * 10; // Jämnt delbart med 10, max 100
+                    percentage = Math.floor(Math.random() * 10) * 10; // Procent mellan 0 och 100, jämnt delbart med 10
+                    const increaseOrDecrease = Math.random() < 0.5 ? "ökning" : "minskning";
+                    if (increaseOrDecrease === "ökning") {
+                        questionText = `Vad blir ${num1} efter en ${percentage}% ${increaseOrDecrease}?`;
+                        correctAnswer = num1 + (percentage / 100) * num1;
+                    } else {
+                        questionText = `Vad blir ${num1} efter en ${percentage}% ${increaseOrDecrease}?`;
+                        correctAnswer = num1 - (percentage / 100) * num1;
+                    }
                     break;
             }
+            return { question: questionText, answer: correctAnswer, num1: num1, num2: num2, percentage: percentage }; // Returnera alla värden
+        }
 
-            answerInput.value = ''; // Rensa input
-            resultDiv.style.display = 'none'; // Dölj resultatet
-            playAgainButton.style.display = 'none'; // Dölj "Spela igen" knappen
-            feedbackDiv.textContent = ''; // Rensa feedback
+        function displayQuestion() {
+            const questionElement = document.getElementById('question');
+            questionElement.textContent = currentQuestion.question;
+            document.getElementById('answer').value = ''; // Rensa tidigare svar
+            document.getElementById('feedback').textContent = ''; // Rensa tidigare feedback
+            attempts = 0;
         }
 
         function checkAnswer() {
-            let userAnswer = parseFloat(answerInput.value);
+            const userAnswer = parseFloat(document.getElementById('answer').value);
+            const feedbackElement = document.getElementById('feedback');
+
             if (isNaN(userAnswer)) {
-                feedbackDiv.textContent = 'Ange ett giltigt nummer.';
-                feedbackDiv.className = 'incorrect';
+                feedbackElement.textContent = 'Skriv in ett giltigt nummer.';
                 return;
             }
 
-            let roundedCorrectAnswer = Math.round(correctAnswer * 100) / 100; // Avrunda till 2 decimaler
-            let roundedUserAnswer = Math.round(userAnswer * 100) / 100;
-
-            if (roundedUserAnswer === roundedCorrectAnswer) {
-                resultDiv.textContent = `Rätt! Svaret är ${roundedCorrectAnswer}%.`;
-                resultDiv.style.display = 'block';
-                feedbackDiv.textContent = 'Korrekt!';
-                feedbackDiv.className = 'correct';
-            } else {
-                resultDiv.textContent = `Fel! Rätt svar är ${roundedCorrectAnswer}%.`;
-                resultDiv.style.display = 'block';
-                feedbackDiv.textContent = 'Felaktigt!';
-                feedbackDiv.className = 'incorrect';
+            attempts++;
+            if (Math.abs(userAnswer - currentQuestion.answer) < 0.01) { // Acceptabel felmarginal
+                feedbackElement.textContent = 'Bra jobbat! 🎉';
+                feedbackElement.style.color = 'green';
+                correctAnswers++;
+                setTimeout(nextQuestion, 1500); // Vänta 1.5 sekunder innan nästa fråga
+            } else if (attempts < 2) {
+                feedbackElement.textContent = 'Försök igen!';
             }
+             else {
+                let explanation = "";
+                 switch (currentDifficulty) {
+                    case 'basic':
+                        explanation = `Fel svar 😞. Här är en förklaring: För att beräkna ${currentQuestion.percentage}% av ${currentQuestion.num1} dividerar du ${currentQuestion.num1} med 100 och multiplicerar kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}).`;
+                        break;
+                    case 'intermediate':
+                        explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vilket tal ${currentQuestion.num2} är ${currentQuestion.percentage}% av, dividerar du ${currentQuestion.num2} med ${currentQuestion.percentage} och multiplicerar kvoten med 100. (${currentQuestion.num2} / ${currentQuestion.percentage} * 100).`;
+                        break;
+                    case 'advanced':
+                        const increaseOrDecreaseText = currentQuestion.question.includes("ökning") ? "adderar" : "subtraherar";
+                        explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vad ${currentQuestion.num1} blir efter en ${currentQuestion.percentage}% ${increaseOrDecreaseText}, beräknar du först ${currentQuestion.percentage}% av ${currentQuestion.num1} genom att dividera ${currentQuestion.num1} med 100 och multiplicera kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}). Sedan ${increaseOrDecreaseText} du ${currentQuestion.num1} med detta.`;
+                        break;
+                }
+                feedbackElement.textContent = explanation;
+                feedbackElement.style.color = 'red';
 
-            playAgainButton.style.display = 'block'; // Visa "Spela igen" knappen
+            }
         }
 
-        checkAnswerButton.addEventListener('click', checkAnswer);
-        playAgainButton.addEventListener('click', generateProblem);
-        closeInstructionsButton.addEventListener('click', () => {
-          instructionsBox.style.display = 'none';
-          generateProblem();
-        });
+        function nextQuestion() {
+            if (attempts > 0 && Math.abs(parseFloat(document.getElementById('answer').value) - currentQuestion.answer) >= 0.01)
+             {
+                return;
+             }
+            currentQuestion = generateQuestion();
+            displayQuestion();
+        }
 
-        // Start the game when the page loads
-        // generateProblem();
+        // Starta spelet
+        nextQuestion();
+
+        // Lägg till event listener för Enter-tangenten
+        document.getElementById('answer').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkAnswer();
+            }
+        });
     </script>
 </body>
 </html>
