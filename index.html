@@ -103,7 +103,7 @@
                 feedbackElement.style.color = 'green';
                 correctAnswers++;
                 setTimeout(nextQuestion, 1500); // Vänta 1.5 sekunder innan nästa fråga
-            } else if (attempts < 2) {
+            } else if (attempts < 3) {
                 feedbackElement.textContent = 'Försök igen!';
                 feedbackElement.style.color = 'red';
             }
@@ -119,7 +119,7 @@
                     case 'advanced':
                         const increaseOrDecreaseText = currentQuestion.question.includes("ökning") ? "ökning" : "minskning";
                         const addOrSubtractText = currentQuestion.question.includes("ökning") ? "adderar" : "subtraherar";
-                        explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vad ${currentQuestion.num1} blir efter en ${currentQuestion.percentage}% ${increaseOrDecreaseText}, beräknar du först ${currentQuestion.percentage}% av ${currentQuestion.num1} genom att dividera ${currentQuestion.num1} med 100 och multiplicera kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}). Sedan ${addOrSubtractText} du ${currentQuestion.num1} med detta.`;
+                        explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vad ${currentQuestion.num1} blir efter en ${increaseOrDecreaseText} med ${currentQuestion.percentage}%, beräknar du först ${currentQuestion.percentage}% av ${currentQuestion.num1} genom att dividera ${currentQuestion.num1} med 100 och multiplicera kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}). Sedan ${addOrSubtractText} du ${currentQuestion.num1} med detta.`;
                         break;
                 }
                 feedbackElement.textContent = explanation;
