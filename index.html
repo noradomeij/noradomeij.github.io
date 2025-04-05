@@ -116,7 +116,8 @@
                         explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vilket tal ${currentQuestion.num2} är ${currentQuestion.percentage}% av, dividerar du ${currentQuestion.num2} med ${currentQuestion.percentage} och multiplicerar kvoten med 100. (${currentQuestion.num2} / ${currentQuestion.percentage} * 100).`;
                         break;
                     case 'advanced':
-                        const increaseOrDecreaseText = currentQuestion.question.includes("ökning") ? "adderar" : "subtraherar";
+                        const increaseOrDecreaseText = currentQuestion.question.includes("ökning") ? "ökning" : "minskning";
+                        const addOrSubtractText = currentQuestion.question.includes("ökning") ? "adderar" : "subtraherar";
                         explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vad ${currentQuestion.num1} blir efter en ${currentQuestion.percentage}% ${increaseOrDecreaseText}, beräknar du först ${currentQuestion.percentage}% av ${currentQuestion.num1} genom att dividera ${currentQuestion.num1} med 100 och multiplicera kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}). Sedan ${increaseOrDecreaseText} du ${currentQuestion.num1} med detta.`;
                         break;
                 }
