@@ -1,132 +1,263 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procentspelet</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title<Procentspelet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-r from-blue-200 to-green-200 min-h-screen flex flex-col justify-center items-center p-4">
-    <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md transition-transform hover:scale-105">
-        <h1 class="text-2xl font-semibold text-blue-600 text-center mb-6">Procentspelet</h1>
-        <div class="mb-4">
-            <label for="difficulty" class="block text-gray-700 text-sm font-bold mb-2">Välj svårighetsgrad:</label>
-            <select id="difficulty" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="basic">Lätt</option>
-                <option value="intermediate">Mellan</option>
-                <option value="advanced">Svår</option>
-            </select>
+
+<style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #black;
+    line-height: 2;
+    background-image: linear-gradient(to right, rgba(183,233,246), rgba(192, 250, 192));
+  }
+
+  .container {
+    position: relative;
+    width: 450px;
+    min-height: 450px;
+    height: auto;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);      
+  }
+
+  .content h1 {
+    font-family: 'Nunito';
+    font-size: 2em;
+    color: rgba(54, 118, 246);
+    margin-bottom: 10px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .content p {
+    margin-bottom: 20px;
+  }
+
+  .button { %Ny fråga
+    position: relative;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    margin: 0px 0px 0px;
+    background-color: rgba(144, 225, 144);
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    font-family: Verdana, sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  button:hover, button:active {
+    background-color: rgba(103, 225, 103);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+    
+  .homepage { %Startsida
+    position: relative;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    margin: 0px 0px 0px;
+    padding: 3.5px 10px;
+    width: auto;
+  }
+
+  a:link, a:visited {
+    background-color: rgba(144, 225, 144);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: ;
+  }
+
+  a:hover, a:active {
+    background-color: rgba(103, 225, 103);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  label {
+    color: black;
+  }
+
+  select {
+    border-radius: 8px;
+    border: none;
+    width: 50%;
+    color: #36454F;
+    box-shadow: 0 0 1px rgba(54, 69, 79);
+    font-family: verdana;
+    font-size: 1em;
+    padding: 12px 16px 12px 16px;
+
+  }
+  
+  .question {
+    color: #36454F;
+    text-align: center;
+    font-size: 1.5em;
+    min-height: 3rem;
+    margin: 1.5rem;
+  }
+  
+  .mb-4 {
+    margin: 1.5rem;
+  }
+  
+  .answer {
+    border-radius: 8px;
+    border: none;
+    width: 80%;
+    color: #36454F;
+    box-shadow: 0 0 1px rgba(54, 69, 79);
+    font-family: verdana;
+    font-size: 1em;
+    padding: 12px 16px 12px 16px;
+  }
+  
+  .feedback{
+    text-align: center;
+    color: green;
+    margin: 1.5rem;
+    min-heigt: 1.5rem;
+  }
+
+</style>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>Procentspelet</h1>
+      <div class="mb-4">
+        <center><label for="difficulty">Välj svårighetsgrad:</label>
+        <select id="difficulty">
+          <option value="basic">Lätt</option>
+          <option value="intermediate">Mellan</option>
+          <option value="advanced">Svår</option>
+        </select>
+    
+        <div id="question" class="question"></div>
+        <input type="number" id="answer" placeholder="Ditt svar" class="answer">
+        <div id="feedback" class="feedback"></div></center>
+
+        <div class="bottom">
+          <a class="homepage" href="https://noradomeij.github.io" target="_blank">Startsida</a>
+         <button class="button" onclick="newQuestion()">Ny fråga</button>
         </div>
-        <div id="question" class="text-lg text-gray-800 text-center mb-4 min-h-[3rem]"></div>
-        <div class="mb-4">
-            <input type="number" id="answer" placeholder="Ditt svar" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-        </div>
-        <div id="feedback" class="text-center text-green-600 font-semibold mb-4 min-h-[1.5rem]"></div>
+      </div>
     </div>
+  </div>
+  
+  <script>
+    let currentQuestion;
+    let correctAnswers = 0;
+    let currentDifficulty = 'basic';
+    let attempts = 0;
 
-    <script>
-        let currentQuestion;
-        let correctAnswers = 0;
-        let currentDifficulty = 'basic';
-        let attempts = 0;
+    const difficultySelect = document.getElementById('difficulty');
+    difficultySelect.addEventListener('change', () => {
+      currentDifficulty = difficultySelect.value;
+      nextQuestion();
+    });
 
-        const difficultySelect = document.getElementById('difficulty');
-        difficultySelect.addEventListener('change', () => {
-            currentDifficulty = difficultySelect.value;
-            nextQuestion();
-        });
+    function generateQuestion() {
+      let num1, num2, percentage;
+      let questionText = "";
 
-        function generateQuestion() {
-            let num1, num2, percentage;
-            let questionText = "";
+      switch (currentDifficulty) {
+        case 'basic': // Hitta procenten av ett tal (t.ex., Vad är 20% av 50?)
+          num1 = Math.floor(Math.random() * 10) * 10; // Jämnt delbart med 10, max 100
+          percentage = Math.floor(Math.random() * 10) * 10 + 10; // Jämnt delbart med 10, mellan 10 och 100
+          questionText = `Vad är ${percentage}% av ${num1}?`;
+          correctAnswer = (percentage / 100) * num1;
+          break;
+        
+        case 'intermediate': // Hitta det hela när procenten och delen är kända (t.ex., 5% av vilket tal är 12?)
+          percentage = Math.floor(Math.random() * 9) + 1; // Procent mellan 1 och 10
+          num2 = percentage * (Math.floor(Math.random() * 10) + 1); // num2 är en multipel av percentage
+          questionText = `${percentage}% av vilket tal är ${num2}?`;
+          correctAnswer = (num2 / percentage) * 100;
+          break;
+        
+        case 'advanced': // Mer komplexa problem, t.ex. ökning/minskning i procent
+          num1 = Math.floor(Math.random() * 10) * 10; // Jämnt delbart med 10, max 100
+          percentage = Math.floor(Math.random() * 10) * 10; // Procent mellan 0 och 100, jämnt delbart med 10
+          const increaseOrDecrease = Math.random() < 0.5 ? "ökning" : "minskning";
+          if (increaseOrDecrease === "ökning") {
+            questionText = `Vad blir ${num1} efter en ${increaseOrDecrease} med ${percentage}%?`;
+            correctAnswer = num1 + (percentage / 100) * num1;
+          } else {
+            questionText = `Vad blir ${num1} efter en ${increaseOrDecrease} med ${percentage}%?`;
+            correctAnswer = num1 - (percentage / 100) * num1;
+          }
+          break;
+          }
+          return { question: questionText, answer: correctAnswer, num1: num1, num2: num2, percentage: percentage }; // Returnera alla värden
+      }
 
-            switch (currentDifficulty) {
+      function displayQuestion() {
+        const questionElement = document.getElementById('question');
+        questionElement.textContent = currentQuestion.question;
+        document.getElementById('answer').value = ''; // Rensa tidigare svar
+        document.getElementById('feedback').textContent = ''; // Rensa tidigare feedback
+        attempts = 0;
+      }
+
+      function checkAnswer() {
+        const userAnswer = parseFloat(document.getElementById('answer').value);
+        const feedbackElement = document.getElementById('feedback');
+
+        if (isNaN(userAnswer)) {
+          feedbackElement.textContent = 'Skriv in ett giltigt nummer.';
+          return;
+        }
+
+        attempts++;
+          if (Math.abs(userAnswer - currentQuestion.answer) < 0.01) { // Acceptabel felmarginal
+            feedbackElement.textContent = 'Bra jobbat! 🎉';
+            feedbackElement.style.color = 'green';
+            correctAnswers++;
+            setTimeout(nextQuestion, 1500); // Vänta 1.5 sekunder innan nästa fråga
+          } else if (attempts < 3) {
+            feedbackElement.textContent = 'Försök igen!';
+            feedbackElement.style.color = 'red';
+                
+          }
+            else {
+              let explanation = "";
+              switch (currentDifficulty) {
                 case 'basic':
-                    // Hitta procenten av ett tal (t.ex., Vad är 20% av 50?)
-                    num1 = Math.floor(Math.random() * 10) * 10; // Jämnt delbart med 10, max 100
-                    percentage = Math.floor(Math.random() * 10) * 10 + 10; // Jämnt delbart med 10, mellan 10 och 100
-                    questionText = `Vad är ${percentage}% av ${num1}?`;
-                    correctAnswer = (percentage / 100) * num1;
-                    break;
+                  explanation = `Fel svar 😞. Här är en förklaring: För att beräkna ${currentQuestion.percentage}% av ${currentQuestion.num1} dividerar du ${currentQuestion.num1} med 100 och multiplicerar kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}).`;
+                  break;
+                
                 case 'intermediate':
-                    // Hitta det hela när procenten och delen är kända (t.ex., 5% av vilket tal är 12?)
-                    percentage = Math.floor(Math.random() * 9) + 1; // Procent mellan 1 och 10
-                    num2 = percentage * (Math.floor(Math.random() * 10) + 1); // num2 är en multipel av percentage
-                    questionText = `${percentage}% av vilket tal är ${num2}?`;
-                    correctAnswer = (num2 / percentage) * 100;
-                    break;
+                  explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vilket tal ${currentQuestion.num2} är ${currentQuestion.percentage}% av, dividerar du ${currentQuestion.num2} med ${currentQuestion.percentage} och multiplicerar kvoten med 100. (${currentQuestion.num2} / ${currentQuestion.percentage} * 100).`;
+                  break;
                 case 'advanced':
-                    // Mer komplexa problem, t.ex. ökning/minskning i procent
-                    num1 = Math.floor(Math.random() * 10) * 10; // Jämnt delbart med 10, max 100
-                    percentage = Math.floor(Math.random() * 10) * 10; // Procent mellan 0 och 100, jämnt delbart med 10
-                    const increaseOrDecrease = Math.random() < 0.5 ? "ökning" : "minskning";
-                    if (increaseOrDecrease === "ökning") {
-                        questionText = `Vad blir ${num1} efter en ${increaseOrDecrease} med ${percentage}%?`;
-                        correctAnswer = num1 + (percentage / 100) * num1;
-                    } else {
-                        questionText = `Vad blir ${num1} efter en ${increaseOrDecrease} med ${percentage}%?`;
-                        correctAnswer = num1 - (percentage / 100) * num1;
-                    }
-                    break;
+                  const increaseOrDecreaseText = currentQuestion.question.includes("ökning") ? "ökning" : "minskning";
+                  const addOrSubtractText = currentQuestion.question.includes("ökning") ? "adderar" : "subtraherar";
+                  explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vad ${currentQuestion.num1} blir efter en ${increaseOrDecreaseText} med ${currentQuestion.percentage}%, beräknar du först ${currentQuestion.percentage}% av ${currentQuestion.num1} genom att dividera ${currentQuestion.num1} med 100 och multiplicera kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}). Sedan ${addOrSubtractText} du ${currentQuestion.num1} med detta.`;
+                  break;
+              }
+              feedbackElement.textContent = explanation;
+              feedbackElement.style.color = 'red';
             }
-            return { question: questionText, answer: correctAnswer, num1: num1, num2: num2, percentage: percentage }; // Returnera alla värden
-        }
-
-        function displayQuestion() {
-            const questionElement = document.getElementById('question');
-            questionElement.textContent = currentQuestion.question;
-            document.getElementById('answer').value = ''; // Rensa tidigare svar
-            document.getElementById('feedback').textContent = ''; // Rensa tidigare feedback
-            attempts = 0;
-        }
-
-        function checkAnswer() {
-            const userAnswer = parseFloat(document.getElementById('answer').value);
-            const feedbackElement = document.getElementById('feedback');
-
-            if (isNaN(userAnswer)) {
-                feedbackElement.textContent = 'Skriv in ett giltigt nummer.';
-                return;
-            }
-
-            attempts++;
-            if (Math.abs(userAnswer - currentQuestion.answer) < 0.01) { // Acceptabel felmarginal
-                feedbackElement.textContent = 'Bra jobbat! 🎉';
-                feedbackElement.style.color = 'green';
-                correctAnswers++;
-                setTimeout(nextQuestion, 1500); // Vänta 1.5 sekunder innan nästa fråga
-            } else if (attempts < 3) {
-                feedbackElement.textContent = 'Försök igen!';
-                feedbackElement.style.color = 'red';
-            }
-             else {
-                let explanation = "";
-                 switch (currentDifficulty) {
-                    case 'basic':
-                        explanation = `Fel svar 😞. Här är en förklaring: För att beräkna ${currentQuestion.percentage}% av ${currentQuestion.num1} dividerar du ${currentQuestion.num1} med 100 och multiplicerar kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}).`;
-                        break;
-                    case 'intermediate':
-                        explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vilket tal ${currentQuestion.num2} är ${currentQuestion.percentage}% av, dividerar du ${currentQuestion.num2} med ${currentQuestion.percentage} och multiplicerar kvoten med 100. (${currentQuestion.num2} / ${currentQuestion.percentage} * 100).`;
-                        break;
-                    case 'advanced':
-                        const increaseOrDecreaseText = currentQuestion.question.includes("ökning") ? "ökning" : "minskning";
-                        const addOrSubtractText = currentQuestion.question.includes("ökning") ? "adderar" : "subtraherar";
-                        explanation = `Fel svar 😞. Här är en förklaring: För att beräkna vad ${currentQuestion.num1} blir efter en ${increaseOrDecreaseText} med ${currentQuestion.percentage}%, beräknar du först ${currentQuestion.percentage}% av ${currentQuestion.num1} genom att dividera ${currentQuestion.num1} med 100 och multiplicera kvoten med ${currentQuestion.percentage} (${currentQuestion.num1} / 100 * ${currentQuestion.percentage}). Sedan ${addOrSubtractText} du ${currentQuestion.num1} med detta.`;
-                        break;
-                }
-                feedbackElement.textContent = explanation;
-                feedbackElement.style.color = 'red';
-
-            }
-        }
+       }
 
         function nextQuestion() {
             if (attempts > 0 && Math.abs(parseFloat(document.getElementById('answer').value) - currentQuestion.answer) >= 0.01)
@@ -135,17 +266,24 @@
              }
             currentQuestion = generateQuestion();
             displayQuestion();
-        }
+      }
 
-        // Starta spelet
-        nextQuestion();
+      function newQuestion() {
+        currentQuestion = generateQuestion();
+        displayQuestion();
+      }
+      
+      // Starta spelet
+      nextQuestion();
 
-        // Lägg till event listener för Enter-tangenten
-        document.getElementById('answer').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                checkAnswer();
-            }
-        });
-    </script>
+      // Lägg till event listener för Enter-tangenten
+      document.getElementById('answer').addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        checkAnswer();
+      }
+      });
+  </script>
+  
 </body>
+
 </html>
