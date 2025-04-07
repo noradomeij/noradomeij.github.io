@@ -220,19 +220,20 @@
           <div><button id="level1" class="btn btn-level active" onclick="setLevel(1)">Nivå 1</button>
                 <button id="level2" class="btn btn-level" onclick="setLevel(2)">Nivå 2</button>
             <button id="level3" class="btn btn-level" onclick="setLevel(3)">Nivå 3</button></center></div>
-
-        <div class="fraga"><p class="laddar" id="equation">Laddar ekvation...</p></div>
+      </div>  
+      
+      <div class="fraga"><p class="laddar" id="equation">Laddar ekvation...</p></div>
+      
+      <div class="mb-4">
+      <center><label for="answer" class="svar">x =</label>
+      <input type="text" id="answer" name="answer" class="svarsruta" placeholder="Ditt svar">
         
-        <center><label for="answer" class="svar">x =</label>
-        <input type="text" id="answer" name="answer" class="svarsruta" placeholder="Ditt svar">
+      <div id="feedback-area"></div>
+      <p class="kontroll">Tryck Enter för att kontrollera ditt svar.</p></center>
         
-        <div id="feedback-area"></div>
-        <p class="kontroll">Tryck Enter för att kontrollera ditt svar.</p></center>
+      <button class="nyfraga" onclick="generateEquation(currentLevel)">Ny fråga</button>
         
-        <button class="nyfraga" onclick="generateEquation(currentLevel)">
-            Ny fråga</button>
-        
-        <a class="homepage" href="index.html">Startsida</a>
+      <a class="homepage" href="index.html">Startsida</a>
       </div>
     </div>
   </div>
