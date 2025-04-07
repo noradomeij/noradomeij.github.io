@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title<Procentspelet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #black;
+    line-height: 2;
+    background-image: linear-gradient(to right, rgba(183,233,246), rgba(192, 250, 192));
+  }
+  
+  .container {
+    position: relative;
+    width: 450px;
+    min-height: 450px;
+    height: auto;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fraga {
+    position: relative;
+    width: auto;
+    height: auto;
+    background-color: #E8E8E8;
+    color: white;
+    margin: 1rem;
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+  
+  .content h1 {
+    font-family: 'Nunito';
+    font-size: 2em;
+    color: rgba(54, 118, 246);
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .content p {
+    margin-bottom: 0px;
+  }
+  
+  .laddar {
+    color: #808080;
+    font-size: 150%;
+    text-align: center;
+  }
+  
+  .svar {
+    font-size: 100%;
+    font-weight: 600;
+    color: #808080;
+    margin-right: 0.5rem;
+  }
+  
+  .svarsruta {
+    font-size: 100%;
+    font-family: Verdana, sans-serif;
+    text-align: center;
+    width: 8rem;
+    color: #808080;
+    border-radius: 10px;
+    padding: 15px;
+    border-color: #808080;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .svarsruta:focus {
+    outline: none;
+    border-color: #4ec1deb2;
+    box-shadow: 0 0 10px #4ec1deb2;
+  }
+  
+  .kontroll {
+    color: #808080;
+    text-align: center;
+    font-size: 75%;
+    padding: 0.5rem 0 2.5rem 0;
+  }
+  
+  .btn {
+    height: auto;
+    width: auto;
+    margin: 0px;
+    padding: 10px 10px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #E8E8E8;
+    color: #808080;
+    text-decoration: none;
+    font-family: Verdana, sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+   
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .btn-level {
+    background-color: #e5e7eb; /* Ljusgrå */
+    color: #374151;
+  }
+  
+  .btn-level.active {
+   background-color: #10b981; /* Grön för aktiv nivå */
+   color: white;
+   font-weight: 700;
+  }
+  
+  .btn-level:hover:not(.active) {
+    background-color: rgba(144, 225, 144);
+  }
+  
+  .nyfraga {
+    position: relative;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    margin: 0px 0px 0px;
+    padding: 3.5px 10px;
+    width: auto;
+    background-color: rgba(144, 225, 144);
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    font-family: Verdana, sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nyfraga:hover, .nyfraga:active {
+    background-color: rgba(103, 225, 103);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+    
+  .homepage {
+    position: relative;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    margin: 0px 0px 0px;
+    padding: 3.5px 10px;
+    width: auto;
+  }
+
+  a:link, a:visited {
+    background-color: rgba(144, 225, 144);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: ;
+  }
+
+  a:hover, a:active {
+    background-color: rgba(103, 225, 103);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  label {
+    color: black;
+  }
+  
+  .mb-4 {
+    margin: 0.5rem;
+  }
+  
+/* Stil för feedback-området */
+  #feedback-area {
+    min-height: 48px; /* Ökat utrymme för eventuell hint */
+    margin-top: 12px;
+    font-weight: 500;
+    line-height: 1.4; /* Förbättrad läsbarhet vid flera rader */
+  }
+  
+  .feedback-success {
+    color: #16a34a; /* Mörkare grön */
+  }
+  
+  .feedback-error {
+    color: #dc2626; /* Mörkare röd */
+  }
+  
+  .feedback-hint {
+    color: #ca8a04; /* Gul/brun färg för hint */
+    font-style: italic;
+  }
+  
+</style>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>Ekvationsspelet</h1>
+      <div class="mb-4">
+        <center><label for="difficulty">Välj nivå:</label>
+          <div><button id="level1" class="btn btn-level active" onclick="setLevel(1)">Nivå 1</button>
+                <button id="level2" class="btn btn-level" onclick="setLevel(2)">Nivå 2</button>
+            <button id="level3" class="btn btn-level" onclick="setLevel(3)">Nivå 3</button></center></div>
+
+        <div class="fraga"><p class="laddar" id="equation">Laddar ekvation...</p></div>
+        
+        <center><label for="answer" class="svar">x =</label>
+        <input type="text" id="answer" name="answer" class="svarsruta" placeholder="Ditt svar">
+        
+        <div id="feedback-area"></div>
+        <p class="kontroll">Tryck Enter för att kontrollera ditt svar.</p></center>
+        
+        <button class="nyfraga" onclick="generateEquation(currentLevel)">
+            Ny fråga</button>
+        
+        <a class="homepage" href="index.html">Startsida</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  
+  let currentLevel = 1;
+  let currentEquation = '';
+  let correctAnswer = null;
+  let incorrectAttempts = 0; // Räknare för felaktiga försök
+
+  // Hämta HTML-element
+  const equationElement = document.getElementById('equation');
+  const answerInput = document.getElementById('answer');
+  const feedbackElement = document.getElementById('feedback-area');
+  const levelButtons = {
+    1: document.getElementById('level1'),
+    2: document.getElementById('level2'),
+    3: document.getElementById('level3')
+  };
+  // Den nya knappen behöver inte hämtas här eftersom onclick används direkt
+
+  // --- Hjälpfunktioner ---
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function getRandomNonZeroInt(min, max) {
+    let num;
+    do {
+      num = getRandomInt(min, max);
+    } while (num === 0);
+      return num;
+  }
+
+  function formatSign(num) {
+    if (num === 0) return '';
+    return num > 0 ? `+ ${num}` : `- ${Math.abs(num)}`;
+  }
+
+  function showFeedback(text, type, hint = '') {
+    let content = text;
+    if (type === 'success') {
+      feedbackElement.className = 'feedback-success';
+    } else if (type === 'error') {
+      feedbackElement.className = 'feedback-error';
+    } else {
+      feedbackElement.className = '';
+    }
+    if (hint) {
+      content += `<br><span class="feedback-hint">${hint}</span>`;
+    }
+    feedbackElement.innerHTML = content;
+  }
+
+  function clearFeedback() {
+    feedbackElement.innerHTML = '';
+    feedbackElement.className = '';
+  }
+
+  function getHint(level) {
+    switch (level) {
+      case 1:
+        return "Tips: Försök få x-termen ensam på ena sidan av likhetstecknet.";
+      case 2:
+        return "Tips: Samla alla termer med 'x' på ena sidan och alla siffertermer på den andra.";
+      case 3:
+        return "Tips: Börja med att förenkla! Multiplicera in i parenteser eller ta bort parenteser (tänk på teckenbyte!).";
+      default:
+        return "";
+    }
+  }
+
+  // --- Ekvationsgenerering ---
+  function generateEquation(level) {
+    // Nollställ räknaren för felaktiga försök när en ny ekvation genereras
+    // (oavsett om det är via nivåbyte, rätt svar eller "Ny fråga"-knappen)
+    incorrectAttempts = 0;
+    let a, b, c, d, e, x;
+    let eqStr = '';
+
+    switch (level) {
+      case 1: // Typ: ax + b = c eller x/a + b = c
+        if (Math.random() < 0.6) { // 60% chans för ax + b = c
+          a = getRandomNonZeroInt(-9, 9);
+          x = getRandomInt(-10, 10);
+          b = getRandomInt(-20, 20);
+          c = a * x + b;
+          eqStr = `${a === 1 ? '' : (a === -1 ? '-' : a)}x ${formatSign(b)} = ${c}`;
+        } else { // 40% chans för x/a + b = c
+          a = getRandomNonZeroInt(2, 6);
+          x = a * getRandomInt(-5, 5);
+          b = getRandomInt(-10, 10);
+          c = x / a + b;
+          eqStr = `x/${a} ${formatSign(b)} = ${c}`;
+        }
+      break;
+
+      case 2: // Typ: ax + b = cx + d eller x/a = bx + c
+        if (Math.random() < 0.6) { // 60% chans för ax + b = cx + d
+          a = getRandomNonZeroInt(-8, 8);
+            do {
+              c = getRandomNonZeroInt(-8, 8);
+            } while (a === c);
+              x = getRandomInt(-10, 10);
+              b = getRandomInt(-20, 20);
+              d = (a - c) * x + b;
+              eqStr = `${a === 1 ? '' : (a === -1 ? '-' : a)}x ${formatSign(b)} = ${c === 1 ? '' : (c === -1 ? '-' : c)}x ${formatSign(d)}`;
+            } else { // 40% chans för x/a = bx + c
+              a = getRandomNonZeroInt(2, 5);
+              b = getRandomNonZeroInt(-4, 4);
+              x = a * getRandomInt(-6, 6);
+              c = (x / a) - (b * x);
+              eqStr = `x/${a} = ${b === 1 ? '' : (b === -1 ? '-' : b)}x ${formatSign(c)}`;
+            }
+      break;
+
+      case 3: // Typ: a(bx + c) = dx + e eller a(x + b) = c - (dx - e)
+        if (Math.random() < 0.6) { // 60% chans för a(bx + c) = dx + e
+          a = getRandomNonZeroInt(-5, 5);
+          b = getRandomNonZeroInt(-5, 5);
+          do {
+            d = getRandomInt(-9, 9);
+          } while (a * b === d);
+            x = getRandomInt(-8, 8);
+            c = getRandomInt(-10, 10);
+            e = (a * b - d) * x + a * c;
+            const term1 = b === 1 ? 'x' : (b === -1 ? '-x' : `${b}x`);
+            const term_c = formatSign(c);
+            const term_d = d === 0 ? '0' : (d === 1 ? 'x' : (d === -1 ? '-x' : `${d}x`));
+            const term_a = a === 1 ? '' : (a === -1 ? '-' : a);
+            eqStr = `${term_a}(${term1} ${term_c}) = ${term_d} ${formatSign(e)}`;
+          } else { // 40% chans för a(x + b) = c - (dx - e)
+            a = getRandomNonZeroInt(-6, 6);
+            d = getRandomNonZeroInt(-6, 6);
+            x = getRandomInt(-8, 8);
+            b = getRandomInt(-10, 10);
+            e = getRandomInt(-15, 15);
+            c = (a + d) * x - e + a * b;
+            const term_dx = d === 1 ? 'x' : (d === -1 ? '-x' : `${d}x`);
+            const term_a_paren = (a === 1 ? '' : (a === -1 ? '-' : a)) + `(x ${formatSign(b)})`;
+            const term_e_sign = formatSign(e);
+            const inner_paren = `${term_dx} ${term_e_sign}`.replace('+ -', '- ').replace('- -', '+ ');
+            eqStr = `${term_a_paren} = ${c} - (${inner_paren})`;
+          }
+      break;
+    }
+
+    // Slutlig rensning och förenkling (samma som tidigare)
+    eqStr = eqStr.replace(/\+ -/g, '- ');
+    eqStr = eqStr.replace(/- -/g, '+ ');
+    eqStr = eqStr.replace(/\( -/g, '(-');
+    eqStr = eqStr.replace(/ \+ $/g, '');
+    eqStr = eqStr.replace(/ - $/g, '');
+    eqStr = eqStr.replace(/= 0 $/g, '= 0');
+    eqStr = eqStr.replace(/= (\d+)$/g, '= $1');
+    eqStr = eqStr.replace(/ (\+ 0)/g, '');
+    eqStr = eqStr.replace(/ (- 0)/g, '');
+    eqStr = eqStr.replace(/1x/g, 'x');
+    eqStr = eqStr.replace(/-1x/g, '-x');
+    eqStr = eqStr.replace(/\(1x/g, '(x');
+    eqStr = eqStr.replace(/\(-1x/g, '(-x');
+    eqStr = eqStr.replace(/\(x \+ 0\)/g, '(x)');
+    eqStr = eqStr.replace(/\(x - 0\)/g, '(x)');
+    eqStr = eqStr.replace(/--/g, '+');
+    eqStr = eqStr.replace(/\+-/g, '-');
+    if (eqStr.includes('= 0x ')) eqStr = eqStr.replace('= 0x ', '= ');
+    if (eqStr.includes('= 0x')) eqStr = eqStr.replace('= 0x', '= 0');
+    if (eqStr.startsWith('0x ')) eqStr = eqStr.substring(3);
+
+    currentEquation = eqStr.trim();
+    correctAnswer = x;
+
+    // Uppdatera UI
+    equationElement.textContent = currentEquation;
+    answerInput.value = '';
+    clearFeedback(); // Rensa feedback när ny fråga genereras
+    answerInput();
+  }
+
+  // --- Spelkontroller ---
+  function setLevel(level) {
+    currentLevel = level;
+    // incorrectAttempts nollställs i generateEquation som anropas nedan
+    Object.values(levelButtons).forEach(btn => btn.classList.remove('active'));
+    levelButtons[level].classList.add('active');
+    generateEquation(currentLevel); // Generera ny ekvation för den valda nivån
+  }
+
+  function checkAnswer() {
+    const userAnswer = answerInput.value.trim();
+    if (userAnswer === '') {
+      showFeedback('Ange ett svar.', 'error');
+      return;
+    }
+
+    const userAnswerNum = parseInt(userAnswer, 10);
+
+    if (isNaN(userAnswerNum) || userAnswerNum.toString() !== userAnswer) {
+      showFeedback('Ange endast heltal.', 'error');
+      return;
+    }
+
+    if (userAnswerNum === correctAnswer) {
+      incorrectAttempts = 0; // Nollställ vid rätt svar
+      showFeedback('Rätt svar!', 'success');
+      setTimeout(() => generateEquation(currentLevel), 1500);
+    } else {
+      incorrectAttempts++;
+      let hint = '';
+      if (incorrectAttempts >= 3) {
+        hint = getHint(currentLevel);
+      }
+      showFeedback('Fel svar. Försök igen!', 'error', hint);
+      answerInput.select();
+    }
+  }
+
+  // --- Initialisering ---
+  answerInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      checkAnswer();
+    }
+  });
+
+  window.onload = () => {
+    setLevel(1);
+  };
+
+  </script>
+
+</html>
